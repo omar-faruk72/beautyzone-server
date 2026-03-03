@@ -6,6 +6,10 @@ function arrayLimit(val) {
 
 const productSchema = new mongoose.Schema(
   {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      auto: true
+    },
     name: {
       type: String,
       required: [true, "Product name is required"],

@@ -16,15 +16,28 @@ const getProducts = async (req, res) => {
 
 
 
+
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    if (!product) return sendError(res, "Product not found", 404);
-    sendSuccess(res, product, "Product fetched successfully");
+    const id = req.params.id;
+
+    // চেক করা যে আইডিটি মঙ্গুজ অবজেক্ট আইডি কি না
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ status: "error", message: "Invalid ID format" });
+    }
+
+    const product = await Product.findById(new mongoose.Types.ObjectId(id));
+
+    if (!product) {
+      return res.status(404).json({ status: "error", message: "Product not found" });
+    }
+
+    sendSuccess(res, product, "Success");
   } catch (err) {
-    sendError(res, err);
+    sendError(res, err.message, 500);
   }
 };
+
 
 const createProduct = async (req, res) => {
   const { name, description, price, images, category, stock } = req.body;
