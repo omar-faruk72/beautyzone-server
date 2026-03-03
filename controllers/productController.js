@@ -5,8 +5,6 @@ const { sendSuccess, sendError } = require("../utils/responseHelper");
 const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
-
-
     if (products.length === 0) {
         return sendSuccess(res, [], "No products found in database");
     }

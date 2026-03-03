@@ -1,6 +1,5 @@
 
 const sendSuccess = (res, data = null, message = "Success") => {
-    console.log(data)
   const response = { status: "success", message };
   if (data !== null) response.data = data;
   res.status(200).send(response);
