@@ -20,8 +20,6 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const id = req.params.id;
-
-    // চেক করা যে আইডিটি মঙ্গুজ অবজেক্ট আইডি কি না
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ status: "error", message: "Invalid ID format" });
     }
