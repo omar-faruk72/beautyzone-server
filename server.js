@@ -23,7 +23,7 @@ app.use(cors({
   origin: [
         'http://127.0.0.1:5500', 
         'http://localhost:5500', 
-        'https://beautyzone-client.vercel.app' 
+        'https://beautyzone-client-eta.vercel.app' 
     ],
     credentials: true
 }));
