@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: "http://127.0.0.1:5500", 
+  origin: "https://beautyzone-client.vercel.app", 
   credentials: true,               
 }));
 
