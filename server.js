@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express(); 
+const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -8,15 +8,18 @@ const connectDB = require("./config/db");
 require("dotenv").config();
 const path = require("path");
 
-
 connectDB();
 
-// CORS 
-app.use(cors({
-  origin:["http://127.0.0.1:5500"],
-  origin: true, 
-  credentials: true
-}));
+// CORS
+app.use(
+  cors({
+    origin: ["http://127.0.0.1:5500"],
+    origin: true,
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 app.use(express.json());
 app.use(bodyParser.json());
@@ -26,7 +29,6 @@ app.use(cookieParser());
 app.use("/api/products", require("./routes/productRoutes"));
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api", require("./routes/reviewRoutes"));
-
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => {
