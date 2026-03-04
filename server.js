@@ -11,15 +11,22 @@ const path = require("path");
 connectDB();
 
 // CORS
-app.use(
-  cors({
-    origin: ["http://127.0.0.1:5500"],
-    origin: true,
-    credentials: true,
-    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+// app.use(
+//   cors({
+//     origin: ["http://127.0.0.1:5500"],
+//     methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   }),
+// );
+
+app.use(cors({
+  origin: [
+        'http://127.0.0.1:5500', 
+        'http://localhost:5500', 
+        'https://beautyzone-client.vercel.app' 
+    ],
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(bodyParser.json());
