@@ -10,6 +10,19 @@ const port = process.env.PORT || 5001;
 const path = require("path");
 connectDB();
 
+// app.use(cors({
+//   origin: "https://beautyzone-client.vercel.app",
+//   credentials: true,               
+// }));
+
+app.use(cors({
+  origin: [
+    "https://beautyzone-client.vercel.app", // আপনার মেইন ডোমেইন
+    "https://beautyzone-client-r0wdpeu9j-hafsa-rashids-projects.vercel.app", 
+    /\.vercel\.app$/ 
+  ],
+  credentials: true,
+}));
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,10 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cookieParser());
 
-app.use(cors({
-  origin: "https://beautyzone-client.vercel.app",
-  credentials: true,               
-}));
+
 
 
 
